@@ -37,14 +37,20 @@ if( isset($_POST["submit"]) ) {
 
 	<form action="" method="post" enctype="multipart/form-data">
 		<ul>
-			<li>
-				<label for="judul">judul : </label>
-				<input type="text" name="judul" id="judul" required>
-			</li>
-			<li>
-				<label for="slug">slug : </label>
-				<input type="text" name="slug" id="slug" required>
-			</li>
+			<li class="form-group">
+            <label for="judul">Judul :</label>
+            <input type="text" name="judul" id="judul">
+          </li>
+          <li class="form-group">
+            <label for="slug">Slug url </label>
+            <li class="input-group">
+                <span class="input-group-text input-lg bg-primary text-white">http://hiburan.com/  </span>
+                <input type="text" name="slug" id="slug">
+           </li>
+           </li>
+           </li>
+           </li>
+           </li>
 			<li>
 				<label for="kategori">kategori : </label>
 				<input type="text" name="kategori" id="kategori">
@@ -62,6 +68,16 @@ if( isset($_POST["submit"]) ) {
 			</li>
 		</ul>
 	</form>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script>
+    $('#judul').keyup(function(){
+      var str = $(this).val();
+      var trims = $.trim(str)
+      var slug = trims.replace(/[^a-z0-9]/gi, '-').replace(/-+/g, '-').replace(/^-|-$/g, '')
+                 $("#slug").val(slug.toLowerCase()+"")
+    })
+  </script>
 
 </body>
 </html>

@@ -46,14 +46,21 @@ if( isset($_POST["submit"]) ) {
     <input type="hidden" name="id" value="<?= $sw["id"]; ?>">
     <input type="hidden" name="gambarLama" value="<?= $sw["gambar"]; ?>">
     <ul>
-      <li>
-        <label for="judul">judul : </label>
-        <input type="text" name="judul" id="judul" required value="<?= $sw["judul"]; ?>">
-      </li>
-      <li>
-        <label for="slug">slug : </label>
-        <input type="text" name="slug" id="slug" value="<?= $sw["slug"]; ?>">
-      </li>
+          <li class="form-group">
+            <label for="judul" class="font-weight-bold">Judul :</label>
+            <input type="text" name="judul" id="judul" value="<?= $sw["judul"]; ?>">
+          </li>
+          <li class="form-group">
+            <label for="slug" class="font-weight-bold">Slug url :</label>
+            <li class="input-group">
+                <span class="input-group-text input-lg bg-primary text-white">http://hiburan.com/  </span>
+                <input type="text" name="slug" id="slug" value="<?= $sw["slug"]; ?>">
+            </li>
+          </li>
+        </li>
+    </li>
+  </li>
+
       <li>
         <label for="kategori">kategori : </label>
         <input type="text" name="kategori" id="kategori" value="<?= $sw["kategori"]; ?>">
@@ -72,6 +79,15 @@ if( isset($_POST["submit"]) ) {
       </li>
     </ul>
   </form>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script>
+    $('#judul').keyup(function(){
+      var str = $(this).val();
+      var trims = $.trim(str)
+      var slug = trims.replace(/[^a-z0-9]/gi, '-').replace(/-+/g, '-').replace(/^-|-$/g, '')
+                 $("#slug").val(slug.toLowerCase()+"")
+    })
+  </script>
 
 </body>
 </html>

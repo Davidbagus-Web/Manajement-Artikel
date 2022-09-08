@@ -10,7 +10,7 @@ require 'functions.php';
 
 // pagination
 // konfigurasi
-$jumlahDataPerHalaman = 3;
+$jumlahDataPerHalaman = 20;
 $jumlahData = count(query("SELECT * FROM hiburan"));
 $jumlahHalaman = ceil($jumlahData / $jumlahDataPerHalaman);
 $halamanAktif = ( isset($_GET["halaman"]) ) ? $_GET["halaman"] : 1;
