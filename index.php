@@ -13,7 +13,16 @@ $jumlahHalaman = ceil($jumlahData / $jumlahDataPerHalaman);
 $halamanAktif = ( isset($_GET["halaman"]) ) ? $_GET["halaman"] : 1;
 $awalData = ( $jumlahDataPerHalaman * $halamanAktif) - $jumlahDataPerHalaman;
 
-$hiburan = query("SELECT * FROM hiburan LIMIT $awalData, $jumlahDataPerHalaman");
+if( isset($_GET["filtercategory"]) ) {
+    $category = $_GET["category"];
+
+    $outputArtikel = query("SELECT * FROM hiburan WHERE category = '$category' ");
+
+} else {
+    $outputArtikel = query("SELECT * FROM hiburan LIMIT $awalData, $jumlahDataPerHalaman");
+} 
+
+$hiburan = $outputArtikel;
 
 ?>
 
@@ -52,6 +61,18 @@ $hiburan = query("SELECT * FROM hiburan LIMIT $awalData, $jumlahDataPerHalaman")
 
     </form>
     <br>
+
+    <form action="" method="get">
+        <ul>
+            <li>
+                <label for="category">Category :</label>
+                <input type="text" name="category" id="category">
+            </li>
+            <li>
+                <button type="submit" name="filtercategory">Filter</button>
+            </li>
+        </ul>
+    </form>
 
    <!-- navigasi -->
 
